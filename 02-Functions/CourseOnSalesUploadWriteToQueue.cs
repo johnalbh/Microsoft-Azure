@@ -26,7 +26,7 @@ namespace _02_Functions
 
             await salesRequestQueue.AddAsync(data);
 
-            string responseMessage = "Sales Request has been received for ." + data.Name;
+            string responseMessage = "Sales Request has been received ion Queue for ." + data.Name;
             return new OkObjectResult(responseMessage);
         }
     }
