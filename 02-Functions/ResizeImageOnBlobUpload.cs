@@ -10,10 +10,10 @@ using SixLabors.ImageSharp.Processing;
 
 namespace _02_Functions
 {
-    public class ResizeImageOnBlobUpload
+    public static class ResizeImageOnBlobUpload
     {
         [FunctionName("ResizeImageOnBlobUpload")]
-        public void Run([BlobTrigger("function-sales-reques/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob,
+        public static void Run([BlobTrigger("function-sales-request/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob,
             [Blob("function-sales-reques-sm/{name}", FileAccess.Write)] Stream myBlobOutput,
             string name, ILogger log)
         {
