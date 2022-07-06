@@ -40,7 +40,7 @@ namespace Azure_Functions.Controllers
 
             if (file != null)
             {
-                var fileName = salesRequest.Id + Path.GetExtension(file.Name);
+                var fileName = salesRequest.Id + Path.GetExtension(file.FileName);
                 BlobContainerClient blobContainerClient =
                     _blobServiceClient.GetBlobContainerClient("function-sales-request");
                 var blobClient = blobContainerClient.GetBlobClient(fileName);
