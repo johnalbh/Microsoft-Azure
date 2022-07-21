@@ -33,8 +33,8 @@ namespace Azure_Functions.Controllers
             using (var content = new StringContent(JsonConvert.SerializeObject(salesRequest), System.Text.Encoding.UTF8,
                        "application/json"))
             {
-                HttpResponseMessage response =
-                    await client.PostAsync("http://localhost:7071/api/CourseOnSalesUploadWriteToQueue", content);
+                //call out function and pass the content. 
+                HttpResponseMessage response = await client.PostAsync("http://localhost:7266/api/OnSalesUploadWriteToQueue", content);
                 string returnValue = response.Content.ReadAsStringAsync().Result;
             }
 
@@ -45,7 +45,7 @@ namespace Azure_Functions.Controllers
                     _blobServiceClient.GetBlobContainerClient("function-sales-request");
                 var blobClient = blobContainerClient.GetBlobClient(fileName);
 
-                var httpHeader = new BlobHttpHeaders
+                var httpHeader = new BlobHttpHeaders  
                 {
                     ContentType = file.ContentType
                 };

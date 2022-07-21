@@ -11,9 +11,9 @@ using Newtonsoft.Json;
 
 namespace _02_Functions
 {
-    public static class CourseOnSalesUploadWriteToQueue
+    public static class OnSalesUploadWriteToQueue
     {
-        [FunctionName("CourseOnSalesUploadWriteToQueue")]
+        [FunctionName("OnSalesUploadWriteToQueue")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             [Queue("SalesRequestInBound", Connection = "AzureWebJobsStorage")] IAsyncCollector<SalesRequest> salesRequestQueue, 
