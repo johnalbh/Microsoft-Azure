@@ -7,7 +7,6 @@ namespace _03_FunctionsExercises
 {
     public class OnQueueTriggerUpdateDatabase
     {
-        private readonly ILogger _logger;
         private readonly AzureSalesRequestDbContext _db;
 
         public OnQueueTriggerUpdateDatabase(AzureSalesRequestDbContext db)

@@ -29,32 +29,42 @@ namespace Azure_Functions.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(SalesRequest salesRequest, IFormFile file)
         {
-            salesRequest.Id = Guid.NewGuid().ToString();
-            using (var content = new StringContent(JsonConvert.SerializeObject(salesRequest), System.Text.Encoding.UTF8,
-                       "application/json"))
-            {
-                //call out function and pass the content. 
-                HttpResponseMessage response = await client.PostAsync("http://localhost:7266/api/OnSalesUploadWriteToQueue", content);
-                string returnValue = response.Content.ReadAsStringAsync().Result;
-            }
 
-            if (file != null)
+            try
             {
-                var fileName = salesRequest.Id + Path.GetExtension(file.FileName);
-                BlobContainerClient blobContainerClient =
-                    _blobServiceClient.GetBlobContainerClient("function-sales-request");
-                var blobClient = blobContainerClient.GetBlobClient(fileName);
-
-                var httpHeader = new BlobHttpHeaders  
+                salesRequest.Id = Guid.NewGuid().ToString();
+                using (var content = new StringContent(JsonConvert.SerializeObject(salesRequest), System.Text.Encoding.UTF8,
+                           "application/json"))
                 {
-                    ContentType = file.ContentType
-                };
+                    //call out function and pass the content. 
+                    HttpResponseMessage response = await client.PostAsync("http://localhost:7266/api/OnSalesUploadWriteToQueue", content);
+                    string returnValue = response.Content.ReadAsStringAsync().Result;
+                }
 
-                await blobClient.UploadAsync(file.OpenReadStream(), httpHeader);
-                return View();
+                if (file != null)
+                {
+                    var fileName = salesRequest.Id + Path.GetExtension(file.FileName);
+                    BlobContainerClient blobContainerClient =
+                        _blobServiceClient.GetBlobContainerClient("function-sales-request");
+                    var blobClient = blobContainerClient.GetBlobClient(fileName);
+
+                    var httpHeader = new BlobHttpHeaders
+                    {
+                        ContentType = file.ContentType
+                    };
+
+                    await blobClient.UploadAsync(file.OpenReadStream(), httpHeader);
+                    return View();
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
 
-            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
