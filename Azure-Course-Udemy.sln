@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Azure-Functions", "Azure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-Functions", "02-Functions\02-Functions.csproj", "{44EF2C54-23BD-4A10-A891-3B40F2137A58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-FunctionsExercises", "03-FunctionsExercises\03-FunctionsExercises.csproj", "{2445CA69-91BC-4B39-A407-357A5751BA36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-FunctionsExercises", "03-FunctionsExercises\03-FunctionsExercises.csproj", "{2445CA69-91BC-4B39-A407-357A5751BA36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
