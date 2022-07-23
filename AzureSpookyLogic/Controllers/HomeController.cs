@@ -17,9 +17,12 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     static readonly HttpClient client = new HttpClient();
-    public HomeController(ILogger<HomeController> logger)
+    private readonly BlobServiceClient _blobServiceClient;
+
+    public HomeController(ILogger<HomeController> logger, BlobServiceClient blobServiceClient)
     {
         _logger = logger;
+        _blobServiceClient = blobServiceClient;
     }
 
     public IActionResult Index()
@@ -35,6 +38,19 @@ public class HomeController : Controller
         using (var content = new StringContent(jsonContent, Encoding.UTF8, "application/json"))
         {
             HttpResponseMessage httpResponse = await client.PostAsync("https://prod-46.eastus2.logic.azure.com:443/workflows/c3e982ddda3547e4a62c7ca9f1f724ec/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JSUk-oCN-2KUm8bOabYjR12fcwr47CAu-sI5baqyL70", content);
+        }
+
+        if (file != null)
+        {
+            var fileName = spookyRequest.Id + Path.GetExtension(file.FileName);
+            BlobContainerClient blobContainerClient = _blobServiceClient.GetBlobContainerClient("certificados-original");
+            var blobClient = blobContainerClient.GetBlobClient(fileName);
+
+            var httpHeaders = new BlobHttpHeaders()
+            {
+                ContentType = file.ContentType
+            };
+            await blobClient.UploadAsync(file.OpenReadStream(), httpHeaders);
         }
 
         return RedirectToAction(nameof(Index));
