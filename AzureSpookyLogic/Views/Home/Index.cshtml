@@ -1,0 +1,34 @@
+﻿@model SpookyRequest
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Spooky Request</h1>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <p>Enter your details to apply today!</p>
+    <div class="row">
+        <div class="col-12">
+            Name:
+        </div>
+        <div class="col-12">
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="col-12">
+            Email:
+        </div>
+        <div class="col-12">
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="col-12">
+            Name:
+        </div>
+        <div class="col-12">
+            <input asp-for="Name" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center p-5">
+            <button type="submit" class="btn btn-success">Apply</button>
+        </div>
+    </div>
+</form>
