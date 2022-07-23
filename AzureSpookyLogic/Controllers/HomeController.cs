@@ -1,21 +1,33 @@
 ﻿using AzureSpookyLogic.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace AzureSpookyLogic.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        static readonly HttpClient client = new HttpClient();
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> Index(SpookyRequest spookyRequest)
         {
-            return View();
+            spookyRequest.Id = Guid.NewGuid().ToString();
+            var jsonContent = JsonConvert.SerializeObject(spookyRequest);
+            using (var content = new StringContent(jsonContent, Encoding.UTF8, "application/json"))
+            {
+                HttpResponseMessage httpResponse = await client.PostAsync("LOGIC APP URL! ", content);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
