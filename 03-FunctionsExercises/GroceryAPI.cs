@@ -88,5 +88,62 @@ namespace _03_FunctionsExercises
                 throw;
             }
         }
+        [FunctionName("UpdateGrocery")]
+        public async Task<IActionResult> UpdateGrocery(
+            [HttpTrigger(AuthorizationLevel.Function, "put", Route = "GroceryList/{id}")] HttpRequest req,
+            ILogger log, string id)
+        {
+            try
+            {
+                log.LogInformation("Updating Grocery List Item");
+                var item = _db.GroceryItems.FirstOrDefault(u => u.Id == id);
+                if (item == null)
+                {
+                    return new NotFoundResult();
+                }
+
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                GroceryItem_Upsert updatedData = JsonConvert.DeserializeObject<GroceryItem_Upsert>(requestBody);
+
+                if (!string.IsNullOrEmpty(updatedData.Name))
+                {
+                    item.Name = updatedData.Name;
+                };
+
+                _db.GroceryItems.Update(item);
+                _db.SaveChanges();
+
+                return new OkObjectResult(item);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        [FunctionName("DeleteAPI")]
+        public async Task<IActionResult> DeleteGrocery(
+            [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "GroceryList/{id}")] HttpRequest req,
+            ILogger log, string id)
+        {
+            try
+            {
+                log.LogInformation("Delete Grocery List Item");
+                var item = _db.GroceryItems.FirstOrDefault(u => u.Id == id);
+                if (item == null)
+                {
+                    return new NotFoundResult();
+                }
+                _db.GroceryItems.Remove(item);
+                _db.SaveChanges();
+
+                return new OkResult();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }
