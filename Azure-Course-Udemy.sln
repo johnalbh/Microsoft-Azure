@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-Functions", "02-Function
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-FunctionsExercises", "03-FunctionsExercises\03-FunctionsExercises.csproj", "{2445CA69-91BC-4B39-A407-357A5751BA36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSpookyLogic", "AzureSpookyLogic\AzureSpookyLogic.csproj", "{BA96CAC3-DCD1-4EC1-8A2B-AB863B0E8E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureSpookyLogic", "AzureSpookyLogic\AzureSpookyLogic.csproj", "{BA96CAC3-DCD1-4EC1-8A2B-AB863B0E8E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisCache", "RedisCache\RedisCache.csproj", "{CA2ECE78-4AE9-4ED4-BA80-FC637E2FDFF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos", "Photos\Photos.csproj", "{DA11A36C-0FB9-4B85-966F-454DC2CAB2B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{BA96CAC3-DCD1-4EC1-8A2B-AB863B0E8E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA96CAC3-DCD1-4EC1-8A2B-AB863B0E8E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA96CAC3-DCD1-4EC1-8A2B-AB863B0E8E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2ECE78-4AE9-4ED4-BA80-FC637E2FDFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2ECE78-4AE9-4ED4-BA80-FC637E2FDFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2ECE78-4AE9-4ED4-BA80-FC637E2FDFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2ECE78-4AE9-4ED4-BA80-FC637E2FDFF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA11A36C-0FB9-4B85-966F-454DC2CAB2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA11A36C-0FB9-4B85-966F-454DC2CAB2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA11A36C-0FB9-4B85-966F-454DC2CAB2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA11A36C-0FB9-4B85-966F-454DC2CAB2B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
